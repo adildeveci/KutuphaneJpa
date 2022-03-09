@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+<meta http-equiv="content-type" content="text/html charset=utf-8" />
+	<h:outputStylesheet name="css/style.css"  /> 
+	</h:head> 
+<h:body style="background-image: url(resources/images/universty.png)">
+<div id="page">
+	<div id="header-container" >
+		<h:graphicImage name="images/header.png" style="width:1000px; height: 100%; margin:0" />
+		<div id="miniMenu">
+		<h:form> 
+			<p><h:commandLink rendered="#{userBean.oturum!=null}" id="oturumKapat" action="#{userBean.oturumKapat()}" value="Oturumu Kapat (#{userBean.oturum.ad})" /></p>
+	 </h:form>
+		</div>
+		
+		
+		</div>
+		<div id="messages-container">
+			<div id="messages">
+								<p:tabMenu activeIndex="#{param.i}" style="width:1000px;">
+					    <p:menuitem value="Anasayfa" outcome="index.xhtml" style="width:150px;" action="index.xhtml">
+					        <f:param name="i" value="0" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitaplar" outcome="Kitaplar.xhtml" style="width:150px; " action="Kitaplar.xhtml" >
+					        <f:param name="i" value="1" />
+					    </p:menuitem>
+					       <p:menuitem value="Kullanıcılar" outcome="SignUp.xhtml" style="width:150px; " action="SignUp.xhtml" rendered="#{userBean.oturum.isAdmin}" >
+					        <f:param name="i" value="2" />
+					    </p:menuitem> 
+						</p:tabMenu>
+			</div>
+		</div>
+		<div id="content-container">
+	
+		
+			<div id="content" style="background-color:#E8E8E8; width:1000px; float:right; ">
+					<div id="sidebar" style="background-color:#99bed3; float:left; width:390px;  ">
+										<h:form  action="servlet1" method="post">             
+									    <h:panelGrid columns="2" cellpadding="5" rendered="#{userBean.oturum==null}">
+									    		<h:outputLabel for="Ogrenci Giris"/>
+									    		<h3>Üye Giriş Paneli</h3>
+									            <h:outputLabel for="username" value="Kullanıcı Adı" />
+									            <p:inputText id="username" value="#{userBean.kullaniciAd}" required="true" label="username"  />
+									   <h:outputLabel for="password" value="Şifre" />
+									            <p:password id="password" value="#{userBean.sifre}" required="true" label="password"   />
+									   <h:outputLabel  />
+									            <h:commandButton style="float:right;" value="Giriş" actionListener="#{userBean.login()}" />
+									          </h:panelGrid> 
+									           <hr></hr>
+									          
+									  <p:growl id="msgs" showDetail="true" />
+
+     DUYURULAR 
+    <p:accordionPanel>
+        <p:tab title="Üniversitemiz Anaokulu Yaz Okulu Hizmetiyle Öğrencilerini Bekliyor">
+            <h:panelGrid columns="2" cellpadding="10">
+               
+                <h:outputText
+                    value="Üniversitemiz Anaokulu; Düzce İl Milli Eğitim Müdürlüğü ile işbirliği içerisinde 3 Temmuz-25 Ağustos 2017 tarihleri arasında, tam gün tiyatro, drama, santranç, görsel sanatlar, gezi, müzik, fen ve doğa etkinlikleri ile yaz okulunu öğrencilerin hizmetine sunuyor.
+Yenilenen kadrosu ve mekanıyla bilgi ve eğlenceyi birleştiren Üniversitemiz Anaokulu’nda öğrencilerimiz, hem eğleniyor, hem de öğreniyor. Kayıtlar için son başvuru tarihi 1 Haziran 2017 olan yaz okuluna başvuru yapmak isteyenler, detaylı bilgilere 0 (380) 542 10 17 telefon numarasından ve 1392 nolu iç hat üzerinden ulaşabilirler. " />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Üniversitemizde Türk Halk Müziği Konseri Gerçekleştirildi">
+            <h:panelGrid columns="2" cellpadding="10">
+               
+                <h:outputText value="Üniversitemiz Sanat Tasarım ve Mimarlık Fakültesi Müzik Bölümü tarafından düzenlenen “Tınılar” başlıklı Türk Halk Müziği konseri, yoğun bir katılımla Mehmet Akif Ersoy Eğitim ve Kültür Merkezi İstiklal Konferans Salonu’nda icra edildi.
+Sanat Tasarım ve Mimarlık Fakültesi Öğretim Üyesi Yrd. Doç. Dr. Müslüm Akdemir rehberliğinde, Müzik Bölümü Türk Müziği birinci ve ikinci sınıf öğrencilerinden oluşan 23 kişilik orkestra ve koro, katılımcılara unutamayacakları musikiyle dolu bir bahar akşamı yaşattı." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Üniversitemiz Orman Fakültesinde Kuraklığa Karşı Alınacak Önlemler Konuşuldu">
+            <h:panelGrid columns="2" cellpadding="10">
+                
+                <h:outputText value="Üniversitemiz Orman Fakültesi, Konferanslar Serisinin 18.’sinde, Batı Karadeniz Orman Araştırma Enstitüsü Müdür Yardımcısı Orman Yüksek Mühendisi Mustafa Arslan’ı konuk etti.
+Orman Fakültesi‘nde gerçekleşen ve Fakülte Dekanı Prof. Dr. Haldun Müderissoğlu ve öğretim elemanlarının katıldığı konferansta, “Dar Yapraklı Dişbudak Fidanlarının Kuraklık Stresine Dayanıklılığı” konusu ele alındı." />
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+									  
+									  
+									</h:form> 
+									<script type="text/javascript">
+									    function handleLoginRequest(xhr, status, args) {
+									        if(args.validationFailed || !args.loggedIn) {
+									            PF('dlg').jq.effect("shake", {times:5}, 100);
+									        }
+									        else {
+									            PF('dlg').hide();
+									            $('#loginLink').fadeOut();
+									        }
+									    }
+									</script> </div>
+		
+		<h:form id="formduyuru" >
+    </h:form>
+			
+		<h:form id="form" style="float:right;">  
+		<p:galleria value="#{index.images}" var="image" panelWidth="600" panelHeight="313" showCaption="true">
+    <p:graphicImage name="images/#{image}" alt="Düzce Üniversitesi Kütüphane Görselleri #{image}" title="#{image}"/>
+		</p:galleria>         
+   			</h:form>
+			
+		</div>
+			
+		</div>
+		<div id="footer-container">
+			<div id="footer">
+				<p>© Copyright - DüzceÜniversitesi Bilgi İşlem Daire Başkanlığı</p>
+			</div>
+		</div>
+	</div>		
+
+</h:body> 
+</html>

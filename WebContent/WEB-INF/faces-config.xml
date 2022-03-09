@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ <managed-bean>
+  <managed-bean-name>al</managed-bean-name>
+  <managed-bean-class>baksimdi.HocaView</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>userAdd</managed-bean-name>
+  <managed-bean-class>Login.UserAdd</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+<managed-bean>
+  <managed-bean-name>index</managed-bean-name>
+  <managed-bean-class>Login.Index</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>kitapBean</managed-bean-name>
+  <managed-bean-class>Login.KitapBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>userBean</managed-bean-name>
+  <managed-bean-class>Login.UserBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <display-name>login</display-name>
+  <from-view-id>/Login.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/ins.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/index.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>Kitaplar.xhtml</from-outcome>
+   <to-view-id>/Kitaplar.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application/>
+</faces-config>

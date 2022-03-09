@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+           xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+<h:head><meta http-equiv="content-type" content="text/html charset=windows-1254" />
+	<h:outputStylesheet name="css/style.css"  /> </h:head> 
+<h:body style="background-image: url(resources/images/universty.png)">
+<div id="page">
+	<div id="header-container">
+		<h:graphicImage name="images/header.png" style="width:1000px; height: 100%; margin:0" />
+			<div id="miniMenu">
+		<h:form> 
+			<p><h:commandLink rendered="#{userBean.oturum!=null}" id="oturumKapat" action="#{userBean.oturumKapat()}" value="Oturumu Kapat (#{userBean.oturum.ad})" /></p>
+	 </h:form>
+		</div>
+		</div>
+		<div id="messages-container">
+				<div id="messages">
+								<p:tabMenu activeIndex="#{param.i}" style="width:1000px;">
+					    <p:menuitem value="Anasayfa" outcome="index.xhtml" style="width:150px;" action="index.xhtml">
+					        <f:param name="i" value="0" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitaplar" outcome="Kitaplar.xhtml" style="width:150px; " action="Kitaplar.xhtml" >
+					        <f:param name="i" value="1" />
+					    </p:menuitem>
+					       <p:menuitem value="Kullanıcılar" outcome="SignUp.xhtml" style="width:150px; " action="SignUp.xhtml" rendered="#{userBean.oturum.isAdmin}" >
+					        <f:param name="i" value="2" />
+					    </p:menuitem> 
+						</p:tabMenu>
+			</div>
+		</div>
+		<div id="content" style="background-color:#E8E8E8; width:1000px; float:right; ">
+		 
+ 
+		
+					<h:form id="formEkleDuzenle" rendered="#{userBean.oturum.isAdmin}">
+					          
+   <h:panelGrid columns="2">
+				 <p:outputLabel for="textkitapad" value="Kitap Ad:" /><p:inputText id="textkitapad" value="#{kitapBean.kitap.kitapadi}" />
+				 <p:outputLabel for="textkitapraf" value="Raf:" /><p:inputText id="textkitapraf" value="#{kitapBean.kitap.raf}" />
+				 <p:outputLabel for="textyazar" value="Yazarı:" /><p:inputText id="textyazar" value="#{kitapBean.kitap.yazari}" />
+				<p:outputLabel for="textyayinevi" value="Yayin evi:" /> <p:inputText id="textyayinevi" value="#{kitapBean.kitap.yayinevi}" />
+			    <p:outputLabel for="turu" value="Kitap Türü:" /> <p:selectOneMenu id="turu"  value="#{kitapBean.kitap.turu}">
+		<f:selectItem itemValue="polisiye" itemLabel="polisiye"></f:selectItem>
+		<f:selectItem itemValue="dram" itemLabel="dram"></f:selectItem>
+		<f:selectItem itemValue="macera" itemLabel="macera"></f:selectItem>
+		<f:selectItem itemValue="aşk" itemLabel="aşk"></f:selectItem>
+		<f:selectItem itemValue="tarih" itemLabel="tarih"></f:selectItem>
+		<f:selectItem itemValue="çocuk" itemLabel="çocuk"></f:selectItem> 
+		</p:selectOneMenu>  
+		<h:commandButton action="#{kitapBean.kaydet()}" value="Kaydet" rendered="#{kitapBean.kitap.id==null or kitapBean.kitap==null or kitapBean.kitap.id==0 }"/>
+		 	<h:commandButton action="#{kitapBean.duzenle()}" value="Düzenle" rendered="#{kitapBean.kitap.id>0}"/>
+		 	<h:commandButton action="#{kitapBean.yeni()}" value="İptal" rendered="#{kitapBean.kitap.id>0}"/>
+			</h:panelGrid> 
+  </h:form>
+		<h:form id="form">          
+			<p:dataTable value="#{kitapBean.kitapListesi}" var="kitap">
+				<f:facet name="header">Kitap Listesi<p:inputText id="textara" value="#{kitapBean.aranan}" />  <input type="submit" value="Ara"/>  </f:facet>
+				<p:column rendered="#{userBean.oturum.isAdmin}">
+					<f:facet name="header">Sil</f:facet>
+					<h:commandLink value="Sil" action="#{kitapBean.sil()}" >
+					<f:setPropertyActionListener target="#{kitapBean.kitap}" value="#{kitap}" />
+					</h:commandLink>
+				</p:column>
+				
+					<p:column  rendered="#{userBean.oturum!=null}">
+					<f:facet name="header">Kitabı Al</f:facet>
+					<h:commandLink  value="Al" action="#{userBean.kitapAl()}"  rendered="#{kitap.kitabiAlanKullanici==null}">
+					<f:setPropertyActionListener target="#{userBean.kitap}" value="#{kitap}" />
+					</h:commandLink> 
+					
+					<h:commandLink  value="Geri ver" action="#{userBean.kitapVer()}"  rendered="#{kitap.kitabiAlanKullanici.id==userBean.oturum.id}">
+					<f:setPropertyActionListener target="#{userBean.kitap}" value="#{kitap}" />
+					</h:commandLink> 
+					
+					<p:outputLabel rendered="#{kitap.kitabiAlanKullanici!=null and kitap.kitabiAlanKullanici.id!=userBean.oturum.id}" value="Kitap Alındı: (#{kitap.kitabiAlanKullanici.ad})" />
+					
+				</p:column>
+				
+				
+				
+			 <p:column rendered="#{userBean.oturum.isAdmin}"> 
+			 <f:facet name="header">Düzenle</f:facet>
+				<h:commandLink value="Sec" >
+				<f:setPropertyActionListener value="#{kitap}" target="#{kitapBean.kitap}"/>
+				</h:commandLink>  
+			</p:column>
+				<p:column>
+					<f:facet name="header">Kitap Adı</f:facet>
+					<h:outputText value="#{kitap.kitapadi}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Yazarı</f:facet>
+					<h:outputText value="#{kitap.yazari}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Raf</f:facet>
+					<h:outputText value="#{kitap.raf}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Kitap Türü</f:facet>
+					<h:outputText value="#{kitap.turu}" />
+				</p:column>
+				
+					<p:column>
+					<f:facet name="header">Yayınevi</f:facet>
+					<h:outputText value="#{kitap.yayinevi}" />
+				</p:column>
+			
+				
+					
+			</p:dataTable>
+		
+		</h:form>
+			</div>
+		
+			
+		
+		
+		<div id="footer-container">
+				<div id="footer">
+				<p>© Copyright - DüzceÜniversitesi Bilgi İşlem Daire Başkanlığı</p>
+			</div>
+		</div></div>
+</h:body>
+</html>

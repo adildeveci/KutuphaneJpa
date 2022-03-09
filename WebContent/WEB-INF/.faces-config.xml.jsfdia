@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#Login.jsp" PATH="/Login.jsp"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Login.jsp:0" NAME="item" PATH="/Login.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#ins.jsp" NAME="output"
+    PATH="/ins.jsp" TARGET="rules:#ins.jsp" TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ins.jsp" PATH="/ins.jsp" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="237,153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Kitaplar.xhtml::#Kitaplar.xhtml"
+    NAME="output" PATH="/Kitaplar.xhtml" TARGET="rules:#Kitaplar.xhtml"
+    TITLE="Kitaplar.xhtml" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Kitaplar.xhtml" PATH="/Kitaplar.xhtml"
+  SHAPE="448,241,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

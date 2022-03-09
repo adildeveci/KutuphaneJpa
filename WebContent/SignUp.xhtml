@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+<h:head><meta http-equiv="content-type" content="text/html charset=windows-1254" />
+	<h:outputStylesheet name="css/style.css"  /></h:head> 
+<h:body style="background-image: url(resources/images/universty.png)"> 
+<div id="page">
+	<div id="header-container">
+		<h:graphicImage name="images/header.png" style="width:1000px; height: 100%; margin:0" />
+			<div id="miniMenu">
+		<h:form> 
+			<p><h:commandLink rendered="#{userBean.oturum!=null}" id="oturumKapat" action="#{userBean.oturumKapat()}" value="Oturumu Kapat (#{userBean.oturum.ad})" /></p>
+	 </h:form>
+		</div>
+		</div>
+		<div id="messages-container">
+				<div id="messages">
+								<p:tabMenu activeIndex="#{param.i}" style="width:1000px;">
+					    <p:menuitem value="Anasayfa" outcome="index.xhtml" style="width:150px;" action="index.xhtml">
+					        <f:param name="i" value="0" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitaplar" outcome="Kitaplar.xhtml" style="width:150px; " action="Kitaplar.xhtml" >
+					        <f:param name="i" value="1" />
+					    </p:menuitem>
+					       <p:menuitem value="Kullanıcılar" outcome="SignUp.xhtml" style="width:150px; " action="SignUp.xhtml" rendered="#{userBean.oturum.isAdmin}" >
+					        <f:param name="i" value="2" />
+					    </p:menuitem> 
+						</p:tabMenu>
+			</div>
+		</div>
+<div id="content" style="background-color:#E8E8E8; width:1000px; float:right; ">
+				<div id="signon">
+		<h:form id="formEkleDuzenle">           
+			<h:panelGrid columns="2">
+				 <p:outputLabel for="textad" value="Ad:" /><p:inputText required="true" id="textad" value="#{userAdd.kullanici.ad}" />
+				 <p:outputLabel for="textSoyad" value="Soyad:" /><p:inputText id="textSoyad" value="#{userAdd.kullanici.soyad}" />
+				<p:outputLabel for="textYas" value="Yas:" /> <p:inputText id="textYas" value="#{userAdd.kullanici.yas}" />
+			<p:outputLabel for="password" value="Sifre:" />  <p:password id="password" value="#{userAdd.kullanici.sifre}"  label="password" />
+				<p:outputLabel for="sehir" value="Sehir:" /><p:inputText id="sehir" value="#{userAdd.kullanici.sehir}" />
+				<p:outputLabel for="cinsiyet" value="Cinsiyet:" /> 
+						<p:selectOneMenu id="cinsiyet"  value="#{userAdd.kullanici.cinsiyet}">
+						<f:selectItem itemValue="Kadin" itemLabel="Kadin"></f:selectItem>
+						<f:selectItem itemValue="Erkek" itemLabel="Erkek"></f:selectItem>
+						</p:selectOneMenu>
+						
+	
+		 <p:outputLabel value="Admin :" /><p:selectBooleanCheckbox value="#{userAdd.kullanici.isAdmin}"></p:selectBooleanCheckbox>
+				
+		 	<h:commandButton action="#{userAdd.kaydet()}" value="Kaydet" rendered="#{userAdd.kullanici.id==null}"/>
+		 	<h:commandButton action="#{userAdd.duzenle()}" value="Düzenle" rendered="#{userAdd.kullanici.id>0}"/>
+				<h:commandButton action="#{userAdd.yeni()}" value="İptal" rendered="#{userAdd.kullanici.id>0}"/>
+			</h:panelGrid></h:form> 
+				<h:form id="form">          
+			<p:dataTable value="#{userBean.kullaniciListesi}" var="kullanici">
+				<f:facet name="header">Kullanıcılar <p:inputText id="textara" value="#{userBean.aranan}" />  <input type="submit" value="Ara"/>  </f:facet>
+				<p:column>
+					<f:facet name="header">Sil</f:facet>
+					<h:commandLink value="Sil" action="#{userAdd.sil()}" >
+					<f:setPropertyActionListener target="#{userAdd.kullanici}" value="#{kullanici}" />
+					</h:commandLink>
+				</p:column>
+						<p:column> 
+						<f:facet name="header"> Sec </f:facet>
+						<h:commandLink value="Sec"> 
+						<f:setPropertyActionListener value="#{kullanici}" target="#{userAdd.kullanici}" />
+						</h:commandLink>  
+						</p:column>
+				<p:column>
+					<f:facet name="header">Ad</f:facet>
+					<h:outputText value="#{kullanici.ad}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">Soyad</f:facet>
+					<h:outputText value="#{kullanici.soyad}" />
+				</p:column> 
+					 <p:column>
+					<f:facet name="header">Cinsiyet</f:facet>
+					<h:outputText value="#{kullanici.cinsiyet}" />
+				</p:column> 
+				 <p:column>
+					<f:facet name="header">Şehir</f:facet>
+					<h:outputText value="#{kullanici.sehir}" />
+				</p:column>  
+			</p:dataTable>
+		
+		</h:form>
+			
+			</div></div>
+			<div id="footer-container">
+			 	<div id="footer">
+				<p>© Copyright - DüzceÜniversitesi Bilgi İşlem Daire Başkanlığı</p>
+			</div>
+		</div>
+	</div>		
+		
+</h:body> 
+</html>

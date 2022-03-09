@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"> 
+
+<h:head><meta http-equiv="content-type" content="text/html charset=utf-8" />
+	<h:outputStylesheet name="css/style.css"  /> </h:head> 
+<h:body style="background-image: url(resources/images/universty.png)">
+<div id="page">
+	<div id="header-container">
+		<h:graphicImage name="images/header.png" style="width:1000px; height: 100%; margin:0" />
+			
+		</div>
+		<div id="messages-container">
+			<div id="messages">
+								<p:tabMenu activeIndex="#{param.i}" style="width:1000px;">
+					    <p:menuitem value="Anasayfa" outcome="index.xhtml" style="width:150px;" action="index.xhtml">
+					        <f:param name="i" value="0" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitap Ekle" outcome="KitapEkle.xhtml" style="width:150px;" action="IsIlanlari.xhtml" >
+					        <f:param name="i" value="1" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitap Ara" outcome="KitapAra.xhtml" style="width:150px;" action="Makaleler.xhtml">
+					        <f:param name="i" value="2" />
+					    </p:menuitem>
+					    <p:menuitem value="Kitaplar" outcome="Kitaplar.xhtml" style="width:150px; " action="Resimler.xhtml" >
+					        <f:param name="i" value="3" />
+					    </p:menuitem>
+					   
+						</p:tabMenu>
+			</div>
+		</div>
+		
+		
+			<div id="content" style="background-color:#E8E8E8; width:1000px; float:right; ">
+				
+		<h:form id="form">           
+   <h:panelGrid columns="2">
+				 <p:outputLabel for="textkitapad" value="Kitap Ad:" /><p:inputText id="textkitapad" value="#{kitapBean.kitap.kitapadi}" />
+				 <p:outputLabel for="textkitapraf" value="Raf:" /><p:inputText id="textkitapraf" value="#{kitapBean.kitap.raf}" />
+				 <p:outputLabel for="textyazar" value="Yazarı:" /><p:inputText id="textyazar" value="#{kitapBean.kitap.yazari}" />
+				<p:outputLabel for="textyayinevi" value="Yayin evi:" /> <p:inputText id="textyayinevi" value="#{kitapBean.kitap.yayinevi}" />
+			    <p:outputLabel for="turu" value="Kitap Türü:" /> <p:selectOneMenu id="turu"  value="#{kitapBean.kitap.turu}">
+		<f:selectItem itemValue="polisiye" itemLabel="polisiye"></f:selectItem>
+		<f:selectItem itemValue="dram" itemLabel="dram"></f:selectItem>
+		</p:selectOneMenu> 
+	<p:commandButton action="#{kitapBean.kaydet()}" value="Kaydet" />
+			</h:panelGrid>
+                
+            
+  </h:form>
+			</div>
+		
+			
+		</div>
+		<div id="footer-container">
+			<div id="footer" style="background-color:#455047 ;width:1000px;">
+				<p>© Copyright - DüzceÜniversitesi Bilgi İşlem Daire Başkanlığı</p>
+			</div>
+		</div>
+			
+
+</h:body> 
+</html>
