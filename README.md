@@ -67,7 +67,7 @@ Uygulamayı lokalinizi indirerek çalıştırmayı deneyebilirsiniz. Biraz pasla
  
 1. Clone the repo
    ```sh
-   git clone https://github.com/adildeveci/KutuphaneJpa.git
+   git clone https://github.com/adildeveci/LibraryAutomationJpa.git
    ```
    
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -77,6 +77,6 @@ Uygulamayı lokalinizi indirerek çalıştırmayı deneyebilirsiniz. Biraz pasla
 
 Adil Deveci - [LinkedIn](https://www.linkedin.com/in/adildeveci/) - adildeveci@hotmail.com
 
-Project Link: [https://github.com/adildeveci/K-means](https://github.com/adildeveci/K-means)
+Project Link: [https://github.com/adildeveci/LibraryAutomationJpa](https://github.com/adildeveci/LibraryAutomationJpa)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
