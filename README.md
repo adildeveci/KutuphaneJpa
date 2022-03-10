@@ -27,7 +27,9 @@
 ![image](https://user-images.githubusercontent.com/21089760/157562125-1d4c89c2-9d84-4df8-9bd9-5e002c708cbd.png)
 
 Üniversite zamanında java jpa ile yaptığımız kütüphane otomasyonu.
-Farklı yetki alanlarına sahip öğrenci ve admin girişi yapılabilen yönetici girişi ile kitap ekleyip, silip, güncelleme yetkisine sahip kullanıcı girişi ile kitap ödünç alma yetkisine sahip olacak.
+Farklı yetki alanlarına sahip öğrenci ve admin girişi mevcut.
+Yönetici girişi ile kitap ekleyip, silip, güncelleme yapılabiliyor.
+Kullanıcı girişi ile kitap ödünç alma işlemi yapılabiliyor.
   
 * katalog tarama özelliği
 * ödünç kitap alma
