@@ -55,6 +55,7 @@ Proje görselleri aşağıdaki gibidir
 * [JPA](https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html) 
  
  <p align="right">(<a href="#top">back to top</a>)</p>
+ 
 <!-- GETTING STARTED -->
 ## Getting Started
 
